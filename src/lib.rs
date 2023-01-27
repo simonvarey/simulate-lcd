@@ -16,6 +16,11 @@ use sdl2::{
     IntegerOrSdlError, Sdl,
 };
 
+// Constants
+
+pub const LCD_DARK_GREEN: Color = Color::RGB(69, 75, 59);
+pub const LCD_LIGHT_GREEN: Color = Color::RGB(158, 171, 136);
+
 // Error
 
 #[derive(Debug)]
@@ -197,14 +202,11 @@ mod tests {
     use super::*;
     use sdl2::{event::Event, keyboard::Keycode};
 
-    const DARK: Color = Color::RGB(69, 75, 59);
-    const GREEN: Color = Color::RGB(158, 171, 136);
-
     #[test]
     fn development_test() {
         let sdl_context = sdl2::init().unwrap();
         let mut screen = LcdScreen::<50, 50>::new(&sdl_context, "LCD Test", 
-        DARK, GREEN, 10, 10).unwrap();
+        LCD_DARK_GREEN, LCD_LIGHT_GREEN, 10, 10).unwrap();
       
         let bm: Box<Bitmap<50, 50>> = vec![[false; 50]; 50].try_into().unwrap();
       
