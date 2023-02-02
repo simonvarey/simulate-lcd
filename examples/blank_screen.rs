@@ -4,7 +4,7 @@ use sdl2::{event::Event, keyboard::Keycode};
 
 fn main() {
     let sdl_context = sdl2::init().unwrap();
-    let mut screen = LcdScreen::<50, 50>::new(&sdl_context, "LCD Test", 
+    let mut screen = LcdScreen::<50, 50>::new(&sdl_context, "LCD Test: Blank", 
     LCD_DARK_GREEN, LCD_LIGHT_GREEN, 10, 10).unwrap();
   
     let bm: Box<Bitmap<50, 50>> = vec![[false; 50]; 50].try_into().unwrap();

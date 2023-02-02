@@ -8,3 +8,6 @@ authors = ["Simon Varey"]
 
 [dependencies]
 sdl2 = "0.35.2"
+
+[dev-dependencies]
+rand = "0.8.5"
