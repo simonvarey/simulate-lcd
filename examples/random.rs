@@ -2,20 +2,20 @@
 use std::{thread::sleep, time::Duration};
 
 use rand::{thread_rng, Rng};
-use sdl2::{event::Event, keyboard::Keycode};
-use simulate_lcd::{Bitmap, LcdScreen, LCD_DARK_GREEN, LCD_LIGHT_GREEN};
+use sdl2::{event::Event, keyboard::Keycode, pixels::Color};
+use simulate_lcd::{Bitmap, LcdScreen};
 
 fn random_bitmap<const C: usize, const R: usize>() -> Box<Bitmap<C, R>> {
     let mut rng = thread_rng();
 
-    let try_bits_vec: Result<Vec<[bool; C]>, Vec<bool>> = (0..R as i32)
+    let bits_vec: Vec<[bool; C]> = (0..R as i32)
         .map(|_y| {
-            let row_vec: Vec<bool> = (0..C as i32).map(|_x| rng.gen()).collect();
-            row_vec.try_into()
+            let mut row = [false; C];
+            rng.fill(&mut row);
+            row
         })
         .collect();
 
-    let bits_vec = try_bits_vec.unwrap();
     bits_vec.try_into().unwrap()
 }
 
@@ -23,9 +23,9 @@ fn main() {
     let sdl_context = sdl2::init().unwrap();
     let mut screen = LcdScreen::<15, 50>::new(
         &sdl_context,
-        "LCD Test: Random",
-        LCD_DARK_GREEN,
-        LCD_LIGHT_GREEN,
+        "LCD Example: Random",
+        Color::WHITE,
+        Color::BLACK,
         20,
         35,
     )
