@@ -108,8 +108,8 @@ pub struct LcdScreen<const R: usize, const C: usize> {
     off_color: Color,
 }
 
-impl<const R: usize, const C: usize> LcdScreen<R, C> {
     // Use: LcdScreen::<R, C>::new(...)
+impl<const R: usize, const C: usize> LcdScreen<R, C> {
     pub fn new(
         sdl_context: &Sdl,
         title: &str,
@@ -199,11 +199,20 @@ impl<const R: usize, const C: usize> LcdScreen<R, C> {
 
 #[cfg(test)]
 mod tests {
-    //use super::*;
+    use super::*;
     //use sdl2::{event::Event, keyboard::Keycode};
 
     #[test]
-    fn development_test() {
-
+    fn test_success() {
+        let sdl_context = sdl2::init().unwrap();
+        let _screen = LcdScreen::<10, 10>::new(
+            &sdl_context,
+            "LCD Test: Success",
+            LCD_DARK_GREEN,
+            LCD_LIGHT_GREEN,
+            10,
+            10,
+        )
+        .unwrap();
     }
 }
