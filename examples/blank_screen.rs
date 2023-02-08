@@ -6,7 +6,7 @@ fn main() {
     let sdl_context = sdl2::init().unwrap();
     let mut screen = LcdScreen::<50, 50>::new(
         &sdl_context,
-        "LCD Test: Blank",
+        "LCD Example: Blank",
         LCD_DARK_GREEN,
         LCD_LIGHT_GREEN,
         10,

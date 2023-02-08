@@ -5,7 +5,7 @@ use rand::{thread_rng, Rng};
 use sdl2::{event::Event, keyboard::Keycode};
 use simulate_lcd::{Bitmap, LcdScreen, LCD_DARK_GREEN, LCD_LIGHT_GREEN};
 
-fn random_bitmap<const C: usize, const R: usize>() -> Box<Bitmap<C, R>> {
+fn random_bitmap<const C: usize, const R: usize>() -> Bitmap<C, R> {
     let mut rng = thread_rng();
 
     let bits_vec: Vec<[bool; C]> = (0..R as i32).map(|_| rng.gen()).collect();
@@ -89,9 +89,9 @@ fn main() {
             }
         }
 
-        screen.draw_bitmap(bm.as_ref()).unwrap();
+        screen.draw_bitmap(&bm).unwrap();
 
-        bm = Box::new(next_state(*bm));
+        bm = next_state(bm);
 
         sleep(Duration::new(0, 1_000_000_000u32 / 60));
     }
