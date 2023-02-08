@@ -101,6 +101,47 @@ impl LcdDot {
 
 // * LCD Screen *
 
+/// ```
+/// use std::{thread::sleep, time::Duration};
+
+/// use rand::{thread_rng, Rng};
+/// use sdl2::{event::Event, keyboard::Keycode};
+/// use simulate_lcd::{Bitmap, LcdScreen, LCD_DARK_GREEN, LCD_LIGHT_GREEN};
+
+/// fn main() {
+///     let sdl_context = sdl2::init().unwrap();
+///     let mut screen = LcdScreen::<64, 96>::new(
+///         &sdl_context,
+///         "LCD Demo: Random",
+///         LCD_DARK_GREEN,
+///         LCD_LIGHT_GREEN,
+///         10,
+///         10,
+///      )
+///      .unwrap();
+/// 
+///      let mut event_pump = sdl_context.event_pump().unwrap();
+///      'running: loop {
+///         for event in event_pump.poll_iter() {
+///             match event {
+///                 Event::Quit { .. }
+///                 | Event::KeyDown {
+///                     keycode: Some(Keycode::Escape),
+///                     ..
+///                 } => break 'running,
+///                 _ => {}
+///              }
+///          }
+///          let mut rng = thread_rng();
+/// 
+///          let random_bits: Vec<[bool; 96]> = (0..64).map(|_| rng.gen()).collect();
+/// 
+///          screen.draw_bitmap(&random_bits.try_into().unwrap()).unwrap();
+/// 
+///          sleep(Duration::new(0, 1_000_000_000u32 / 60));
+///      }
+///  }
+///```
 pub struct LcdScreen<const R: usize, const C: usize> {
     dots: Box<[[LcdDot; C]; R]>,
     canvas: Canvas<Window>,
