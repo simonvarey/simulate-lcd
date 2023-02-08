@@ -8,14 +8,8 @@ use simulate_lcd::{Bitmap, LcdScreen, LCD_DARK_GREEN, LCD_LIGHT_GREEN};
 fn random_bitmap<const C: usize, const R: usize>() -> Box<Bitmap<C, R>> {
     let mut rng = thread_rng();
 
-    let try_bits_vec: Result<Vec<[bool; C]>, Vec<bool>> = (0..R as i32)
-        .map(|_y| {
-            let row_vec: Vec<bool> = (0..C as i32).map(|_x| rng.gen()).collect();
-            row_vec.try_into()
-        })
-        .collect();
+    let bits_vec: Vec<[bool; C]> = (0..R as i32).map(|_| rng.gen()).collect();
 
-    let bits_vec = try_bits_vec.unwrap();
     bits_vec.try_into().unwrap()
 }
 
@@ -71,7 +65,7 @@ fn main() {
     let sdl_context = sdl2::init().unwrap();
     let mut screen = LcdScreen::<65, 120>::new(
         &sdl_context,
-        "LCD Test: Game of Life",
+        "LCD Example: Game of Life",
         LCD_DARK_GREEN,
         LCD_LIGHT_GREEN,
         10,
