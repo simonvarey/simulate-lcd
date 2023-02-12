@@ -1,6 +1,8 @@
 // * Simulate LCD: A Simple LCD Screen Simulator *
 // Created by Simon Varey - github.com/simonvarey
 
+// #![doc = include_str!("../README.md")]
+
 // Imports
 
 use std::{
@@ -101,6 +103,10 @@ impl LcdDot {
 
 // * LCD Screen *
 
+/// Creates a simulated LCD screen 
+/// 
+/// # Examples
+/// 
 /// ```
 /// use std::{thread::sleep, time::Duration};
 
