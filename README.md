@@ -49,7 +49,7 @@ More examples can be found in the examples folder.
 
 ## Usage
 
-To create new simulated screen window with `R` rows and `C` columns of dots, use the function `LcdScreen::<R, C>::new`, with the following parameters:
+`LcdScreen` is the main type provided by this crate. To create new simulated screen window with `R` rows and `C` columns of dots, use the function `LcdScreen::<R, C>::new`, with the following parameters:
 
 - `sdl_context`: an `Sdl` context object 
 - `title`: the window title
