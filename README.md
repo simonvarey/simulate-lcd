@@ -82,13 +82,5 @@ Licensed under either of
 Contribution
 
 Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you shall be dual licensed as above, without any additional terms or conditions.
-Dependencies
-
-~0–6.5MB
-~105K SLoC
-
-    unix nix 0.26+fs+signal
-    windows windows-sys 0.42+Win32_Foundation+Win32_System_Threadi…+Win32_Security+Win32_System_Windows…+Win32_System_Console
-
 
 -->
