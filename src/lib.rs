@@ -1,7 +1,9 @@
 // * Simulate LCD: A Simple LCD Screen Simulator *
 // Created by Simon Varey - github.com/simonvarey
 
-// #![doc = include_str!("../README.md")]
+#![warn(missing_docs)]
+//#![warn(rustdoc::missing_doc_code_examples)]
+#![doc = include_str!("../README.md")]
 
 // Imports
 
