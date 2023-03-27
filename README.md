@@ -1,12 +1,12 @@
 # simulate_lcd <!-- [![](https://img.shields.io/crates/v/simulate_lcd.svg)](https://crates.io/crates/simulate_lcd) --> <!-- [![](https://docs.rs/simulate_lcd/badge.svg)](https://docs.rs/simulate_lcd) -->
 
-A simple library to simulate dot-matrix displays, such as monochrome LCD screens.
+A simple library to simulate monochrome dot-matrix displays, such as monochrome LCD screens.
 
 <!-- [Documentation](https://docs.rs/simulate_lcd) -->
 
 <!-- ## Overview -->
 
-## Example <!-- 'Example Usage' -->
+## Example <!-- 'Example Usage' 'Examples' -->
 
 ```
 use std::{thread::sleep, time::Duration};
@@ -71,10 +71,11 @@ The 'on' and 'off' colors of the screen are [`sdl2::pixels::Color`](https://rust
 simulate_lcd is built around the [sdl2](https://crates.io/crates/sdl2) crate. A new `LcdScreen` requires an [`Sdl`](https://rust-sdl2.github.io/rust-sdl2/sdl2/struct.Sdl.html) context object created by the [`sdl2::init()`](https://rust-sdl2.github.io/rust-sdl2/sdl2/fn.init.html) function. Note that sdl2 may require further setup than just adding the crate. See the [sdl2 README](https://github.com/Rust-SDL2/rust-sdl2/blob/master/README.md#requirements) for details.
 <!-- from the [sdl2](https://crates.io/crates/sdl2) crate.  -->
 
-<!-- ## Examples
+## License
 
+Licensed under the Apache License, Version 2.0 (LICENSE or http://www.apache.org/licenses/LICENSE-2.0).
 
-License
+<!-- 
 
 Licensed under either of
 
@@ -84,5 +85,20 @@ Licensed under either of
 Contribution
 
 Unless you explicitly state otherwise, any contribution intentionally submitted for inclusion in the work by you shall be dual licensed as above, without any additional terms or conditions.
+
+#### License
+
+<sup>
+Licensed under either of <a href="LICENSE-APACHE">Apache License, Version
+2.0</a> or <a href="LICENSE-MIT">MIT license</a> at your option.
+</sup>
+
+<br>
+
+<sub>
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in this crate by you, as defined in the Apache-2.0 license, shall
+be dual licensed as above, without any additional terms or conditions.
+</sub>
 
 -->

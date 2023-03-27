@@ -3,9 +3,10 @@ name = "simulate_lcd"
 version = "0.1.0"
 edition = "2021"
 authors = ["Simon Varey <simonvarey@gmail.com>"]
-description = "A simple library to simulate dot-matrix displays, such as monochrome LCD screens."
+description = "A simple library to simulate monochrome dot-matrix displays, such as monochrome LCD screens."
 readme = "README.md"
 repository = "https://github.com/simonvarey/simulate_lcd"
+license = "Apache-2.0"
 categories = ["graphics", "visualization", "multimedia::video", "rendering", "simulation"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
