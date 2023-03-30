@@ -44,7 +44,7 @@ pub const LCD_LIGHT_GREEN: Color = Color::RGB(158, 171, 136);
 // Error
 
 /// Errors that can arise from the creation and use of [`LcdScreens`].
-/// 
+///
 /// [`LcdScreens`]: crate::LcdScreen
 #[derive(Debug)]
 pub enum LcdError {
@@ -53,11 +53,11 @@ pub enum LcdError {
     /// more details.
     Video(String),
     /// Indicates that an error occurred when attempting to build the OS window for the [`LcdScreen`]. This
-    /// error is a simple wrapper around the [underlying SDL error](https://rust-sdl2.github.io/rust-sdl2/sdl2/video/enum.WindowBuildError.html). 
+    /// error is a simple wrapper around the [underlying SDL error](https://rust-sdl2.github.io/rust-sdl2/sdl2/video/enum.WindowBuildError.html).
     /// Please consult the [`sdl2`] documentation for more details.
     WindowBuild(WindowBuildError),
     /// Indicates that an error occurred when attempting to build the canvas for the [`LcdScreen`]. This
-    /// error is a simple wrapper around the [underlying SDL error](https://rust-sdl2.github.io/rust-sdl2/sdl2/enum.IntegerOrSdlError.html). 
+    /// error is a simple wrapper around the [underlying SDL error](https://rust-sdl2.github.io/rust-sdl2/sdl2/enum.IntegerOrSdlError.html).
     /// Please consult the [`sdl2`] documentation for more details.
     CanvasBuild(IntegerOrSdlError),
     /// Indicates that an error occurred when attempting to fill a dot on the [`LcdScreen`]. This
@@ -65,9 +65,9 @@ pub enum LcdError {
     /// more details.
     Fill(String),
     /// Indicates that the [`LcdScreen`] is too wide to be displayed. The maximum width of a screen is [`i32::MAX`]
-    /// pixels. As the width of the screen is set by the number of rows of dots it has multiplied by the 
+    /// pixels. As the width of the screen is set by the number of rows of dots it has multiplied by the
     /// pixel width of each dot, one or both of those values must be reduced.
-    /// 
+    ///
     /// [`i32::MAX`]: std::i32::MAX
     WindowWidth {
         /// the total width in pixels of the undisplayed screen
@@ -78,9 +78,9 @@ pub enum LcdError {
         dot_width: u32,
     },
     /// Indicates that the [`LcdScreen`] is too high to be displayed. The maximum height of a screen is [`i32::MAX`]
-    /// pixels. As the height of the screen is set by the number of columns of dots it has multiplied by the 
+    /// pixels. As the height of the screen is set by the number of columns of dots it has multiplied by the
     /// height of each dot, one or both of those values must be reduced.
-    /// 
+    ///
     /// [`i32::MAX`]: std::i32::MAX
     WindowHeight {
         /// the total height in pixels of the undisplayed screen
@@ -123,8 +123,8 @@ impl From<IntegerOrSdlError> for LcdError {
 
 // Bitmap
 
-/// This is an alias for a C-by-R row-major array-of-arrays of booleans. Arrays of this form can be 
-/// written to an [`LcdScreen`] using the [`draw_bitmap`] method. This alias can be used as a convenience 
+/// This is an alias for a C-by-R row-major array-of-arrays of booleans. Arrays of this form can be
+/// written to an [`LcdScreen`] using the [`draw_bitmap`] method. This alias can be used as a convenience
 /// to generate the bitmaps you want to draw to the LCD screen.
 ///  
 /// [`draw_bitmap`]: crate::LcdScreen::draw_bitmap
@@ -157,20 +157,20 @@ impl LcdDot {
 
 // * LCD Screen *
 
-/// 
-/// A simulated LCD dot-matrix screen. 
-/// 
+///
+/// A simulated LCD dot-matrix screen.
+///
 /// The screen has `R` rows and `C` columns of dots. *Note*: The number of rows and columns of dots for
 /// the screen is specified as a const parameter on the type of the screen, rather than as an argument to
 /// the constructor function [`new`].
-/// 
+///
 /// # Parameters
 ///
 /// * `R` - The number of rows of dots of the screen
 /// * `C` - The number of columns of dots of the screen
-/// 
+///
 /// # Examples
-/// 
+///
 /// ```
 /// use std::{thread::sleep, time::Duration};
 ///
@@ -179,7 +179,7 @@ impl LcdDot {
 /// use simulate_lcd::{Bitmap, LcdScreen, LCD_DARK_GREEN, LCD_LIGHT_GREEN};
 ///
 /// const NANOS_PER_SEC: u64 = 1_000_000_000;
-/// 
+///
 /// fn main() {
 ///     let sdl_context = sdl2::init().unwrap();
 ///     let mut screen = LcdScreen::<64, 96>::new(
@@ -191,7 +191,7 @@ impl LcdDot {
 ///         10,
 ///      )
 ///      .unwrap();
-/// 
+///
 ///      let mut event_pump = sdl_context.event_pump().unwrap();
 ///      'running: loop {
 ///         for event in event_pump.poll_iter() {
@@ -205,16 +205,16 @@ impl LcdDot {
 ///              }
 ///          }
 ///          let mut rng = thread_rng();
-/// 
+///
 ///          let random_bits: Vec<[bool; 96]> = (0..64).map(|_| rng.gen()).collect();
-/// 
+///
 ///          screen.draw_bitmap(&random_bits.try_into().unwrap()).unwrap();
-/// 
+///
 ///          sleep(Duration::from_nanos(NANOS_PER_SEC / 60));
 ///      }
 ///  }
 /// ```
-/// 
+///
 /// [`new`]: crate::LcdScreen::new
 pub struct LcdScreen<const R: usize, const C: usize> {
     dots: Box<[[LcdDot; C]; R]>,
@@ -225,21 +225,21 @@ pub struct LcdScreen<const R: usize, const C: usize> {
 
 impl<const R: usize, const C: usize> LcdScreen<R, C> {
     /// Creates a simulated LCD screen.
-    /// 
-    /// *Note*: The number of rows and columns of dots for a screen is specified as a const parameter 
+    ///
+    /// *Note*: The number of rows and columns of dots for a screen is specified as a const parameter
     /// on the type of the screen, rather than as an argument to this function.
-    /// 
+    ///
     /// # Arguments
     ///
-    /// * `sdl_context` - An [`Sdl`] context object 
+    /// * `sdl_context` - An [`Sdl`] context object
     /// * `title` - The title of the window containing the screen
     /// * `on_color` - A [`Color`] object representing the color of a dot when it is 'on'
     /// * `off_color - A [`Color`] object representing the color of a dot when it is 'off'
     /// * `dot_width` - The width of a dot on the screen in pixels
     /// * `dot_height` - The height of a dot on the screen in pixels
-    /// 
+    ///
     /// # Examples
-    /// 
+    ///
     /// ```
     /// # use simulate_lcd::{LcdScreen, LCD_DARK_GREEN, LCD_LIGHT_GREEN};
     /// # let sdl_context = sdl2::init().unwrap();
@@ -254,19 +254,19 @@ impl<const R: usize, const C: usize> LcdScreen<R, C> {
     ///      .unwrap();
     /// # std::thread::sleep(std::time::Duration::from_secs(1));
     /// ```
-    /// 
+    ///
     /// # Errors
-    /// 
+    ///
     /// - [`LcdError::Video`] when there is an error initializing the SDL video subsystem
     /// - [`LcdError::WindowBuild`] when there is an error building the window
     /// - [`LcdError::CanvasBuild`] when there is an error building the window canvas
     /// - [`LcdError::WindowWidth`] when the total window width, in pixels, would exceed [`i32::MAX`]
     /// - [`LcdError::WindowHeight`] when the total window width, in pixels, would exceed [`i32::MAX`]
-    /// 
+    ///
     /// [`Sdl`]: sdl2::Sdl
     /// [`Color`]: sdl2::pixels::Color
     /// [`i32::MAX`]: std::i32::MAX
-    /// 
+    ///
     pub fn new(
         sdl_context: &Sdl,
         title: &str,
@@ -333,13 +333,13 @@ impl<const R: usize, const C: usize> LcdScreen<R, C> {
     }
 
     /// Draws a bitmap to a simulated LCD screen.
-    /// 
+    ///
     /// # Arguments
     ///
     /// * `bm` - A [`Bitmap`], or something that can be converted into a bitmap, to write to the LCD screen
-    /// 
+    ///
     /// # Examples
-    /// 
+    ///
     /// ```
     /// # use simulate_lcd::{LcdScreen, LCD_DARK_GREEN, LCD_LIGHT_GREEN};
     /// # let sdl_context = sdl2::init().unwrap();
@@ -353,15 +353,15 @@ impl<const R: usize, const C: usize> LcdScreen<R, C> {
     ///      )
     ///      .unwrap();
     /// # std::thread::sleep(std::time::Duration::from_secs(1));
-    /// 
+    ///
     /// screen.draw_bitmap(&[[true, false], [false, true]]);
     /// # std::thread::sleep(std::time::Duration::from_secs(1));
     /// ```
-    /// 
+    ///
     /// # Errors
-    /// 
+    ///
     /// - [`LcdError::Fill`] when there is an error filling one of the dots with the relevant color
-    /// 
+    ///
     pub fn draw_bitmap<'a, BM: Into<&'a Bitmap<C, R>>>(&mut self, bm: BM) -> Result<(), LcdError> {
         let bm_array: &[[bool; C]; R] = bm.into();
         for (row_dots, row_bm) in self.dots.iter_mut().zip(bm_array) {

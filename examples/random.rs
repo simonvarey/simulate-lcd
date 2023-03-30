@@ -47,7 +47,9 @@ fn main() {
 
         let mut rng = thread_rng();
         let random_bits: Vec<[bool; 50]> = (0..15).map(|_| rng.gen()).collect();
-        screen.draw_bitmap(&random_bits.try_into().unwrap()).unwrap();
+        screen
+            .draw_bitmap(&random_bits.try_into().unwrap())
+            .unwrap();
 
         sleep(Duration::new(0, 1_000_000_000u32 / 60));
     }
