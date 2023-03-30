@@ -1,8 +1,8 @@
-# simulate_lcd <!-- [![](https://img.shields.io/crates/v/simulate_lcd.svg)](https://crates.io/crates/simulate_lcd) --> <!-- [![](https://docs.rs/simulate_lcd/badge.svg)](https://docs.rs/simulate_lcd) -->
+# simulate-lcd <!-- [![](https://img.shields.io/crates/v/simulate-lcd.svg)](https://crates.io/crates/simulate-lcd) --> <!-- [![](https://docs.rs/simulate-lcd/badge.svg)](https://docs.rs/simulate-lcd) -->
 
 A simple library to simulate monochrome dot-matrix displays, such as monochrome LCD screens.
 
-<!-- [Documentation](https://docs.rs/simulate_lcd) -->
+<!-- [Documentation](https://docs.rs/simulate-lcd) -->
 
 <!-- ## Overview -->
 
@@ -62,13 +62,13 @@ More examples can be found in the examples folder.
 
 The screen will disappear as soon as the `LcdScreen` object is dropped, including at the end of the scope it was created. Use a loop, or some other device, to stop the screen object from being dropped. 
 
-New images can be drawn to the screen using the `draw_bitmap` method. `draw_bitmap` takes any object which can be converted into a [`[[`](https://doc.rust-lang.org/std/primitive.array.html)[`bool;`](https://doc.rust-lang.org/std/primitive.bool.html)[` C]; R]`](https://doc.rust-lang.org/std/primitive.array.html) array. Each `true` in this row-major array represents a dot that is 'on'. simulate_lcd offers `Bitmap<C, R>` as a convenient alias for [`[[`](https://doc.rust-lang.org/std/primitive.array.html)[`bool;`](https://doc.rust-lang.org/std/primitive.bool.html)[` C]; R]`](https://doc.rust-lang.org/std/primitive.array.html).
+New images can be drawn to the screen using the `draw_bitmap` method. `draw_bitmap` takes any object which can be converted into a [`[[`](https://doc.rust-lang.org/std/primitive.array.html)[`bool;`](https://doc.rust-lang.org/std/primitive.bool.html)[` C]; R]`](https://doc.rust-lang.org/std/primitive.array.html) array. Each `true` in this row-major array represents a dot that is 'on'. simulate-lcd offers `Bitmap<C, R>` as a convenient alias for [`[[`](https://doc.rust-lang.org/std/primitive.array.html)[`bool;`](https://doc.rust-lang.org/std/primitive.bool.html)[` C]; R]`](https://doc.rust-lang.org/std/primitive.array.html).
 
-The 'on' and 'off' colors of the screen are [`sdl2::pixels::Color`](https://rust-sdl2.github.io/rust-sdl2/sdl2/pixels/struct.Color.html) objects. They can be created from RGB values with the [`sdl2::pixels::Color::RGB`](https://rust-sdl2.github.io/rust-sdl2/sdl2/pixels/struct.Color.html#method.RGB) function. simulate_lcd offers the `LCD_DARK_GREEN` and `LCD_LIGHT_GREEN` constants from simulating green backlight LCD screens.
+The 'on' and 'off' colors of the screen are [`sdl2::pixels::Color`](https://rust-sdl2.github.io/rust-sdl2/sdl2/pixels/struct.Color.html) objects. They can be created from RGB values with the [`sdl2::pixels::Color::RGB`](https://rust-sdl2.github.io/rust-sdl2/sdl2/pixels/struct.Color.html#method.RGB) function. simulate-lcd offers the `LCD_DARK_GREEN` and `LCD_LIGHT_GREEN` constants from simulating green backlight LCD screens.
 
 ## Setup
 
-simulate_lcd is built around the [sdl2](https://crates.io/crates/sdl2) crate. A new `LcdScreen` requires an [`Sdl`](https://rust-sdl2.github.io/rust-sdl2/sdl2/struct.Sdl.html) context object created by the [`sdl2::init()`](https://rust-sdl2.github.io/rust-sdl2/sdl2/fn.init.html) function. Note that sdl2 may require further setup than just adding the crate. See the [sdl2 README](https://github.com/Rust-SDL2/rust-sdl2/blob/master/README.md#requirements) for details.
+simulate-lcd is built around the [sdl2](https://crates.io/crates/sdl2) crate. A new `LcdScreen` requires an [`Sdl`](https://rust-sdl2.github.io/rust-sdl2/sdl2/struct.Sdl.html) context object created by the [`sdl2::init()`](https://rust-sdl2.github.io/rust-sdl2/sdl2/fn.init.html) function. Note that sdl2 may require further setup than just adding the crate. See the [sdl2 README](https://github.com/Rust-SDL2/rust-sdl2/blob/master/README.md#requirements) for details.
 <!-- from the [sdl2](https://crates.io/crates/sdl2) crate.  -->
 
 ## License
