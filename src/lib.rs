@@ -43,20 +43,51 @@ pub const LCD_LIGHT_GREEN: Color = Color::RGB(158, 171, 136);
 
 // Error
 
+/// Errors that can arise from the creation and use of [`LcdScreens`].
+/// 
+/// [`LcdScreens`]: crate::LcdScreen
 #[derive(Debug)]
 pub enum LcdError {
+    /// Indicates that an error occurred when attempting to initalize the SDL video subsystem. This error
+    /// is a simple wrapper around the underlying SDL error. Please consult the [`sdl2`] documentation for
+    /// more details.
     Video(String),
+    /// Indicates that an error occurred when attempting to build the OS window for the [`LcdScreen`]. This
+    /// error is a simple wrapper around the [underlying SDL error](https://rust-sdl2.github.io/rust-sdl2/sdl2/video/enum.WindowBuildError.html). 
+    /// Please consult the [`sdl2`] documentation for more details.
     WindowBuild(WindowBuildError),
+    /// Indicates that an error occurred when attempting to build the canvas for the [`LcdScreen`]. This
+    /// error is a simple wrapper around the [underlying SDL error](https://rust-sdl2.github.io/rust-sdl2/sdl2/enum.IntegerOrSdlError.html). 
+    /// Please consult the [`sdl2`] documentation for more details.
     CanvasBuild(IntegerOrSdlError),
+    /// Indicates that an error occurred when attempting to fill a dot on the [`LcdScreen`]. This
+    /// error is a simple wrapper around the underlying SDL error. Please consult the [`sdl2`] documentation for
+    /// more details.
     Fill(String),
+    /// Indicates that the [`LcdScreen`] is too wide to be displayed. The maximum width of a screen is [`i32::MAX`]
+    /// pixels. As the width of the screen is set by the number of rows of dots it has multiplied by the 
+    /// pixel width of each dot, one or both of those values must be reduced.
+    /// 
+    /// [`i32::MAX`]: std::i32::MAX
     WindowWidth {
+        /// the total width in pixels of the undisplayed screen
         width: u32,
+        /// the number of rows of dots of the undisplayed screen
         row: usize,
+        /// the pixel width of the dots of the undisplayed screen
         dot_width: u32,
     },
+    /// Indicates that the [`LcdScreen`] is too high to be displayed. The maximum height of a screen is [`i32::MAX`]
+    /// pixels. As the height of the screen is set by the number of columns of dots it has multiplied by the 
+    /// height of each dot, one or both of those values must be reduced.
+    /// 
+    /// [`i32::MAX`]: std::i32::MAX
     WindowHeight {
+        /// the total height in pixels of the undisplayed screen
         height: u32,
+        /// the number of columns of dots of the undisplayed screen
         col: usize,
+        /// the pixel height of the dots of the undisplayed screen
         dot_height: u32,
     },
 }
