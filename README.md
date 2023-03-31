@@ -1,8 +1,8 @@
-# simulate-lcd <!-- [![](https://img.shields.io/crates/v/simulate-lcd.svg)](https://crates.io/crates/simulate-lcd) --> <!-- [![](https://docs.rs/simulate-lcd/badge.svg)](https://docs.rs/simulate-lcd) -->
+# simulate-lcd <!-- [![](https://img.shields.io/crates/v/simulate-lcd.svg)](https://crates.io/crates/simulate-lcd) --> [![](https://docs.rs/simulate-lcd/badge.svg)](https://docs.rs/simulate-lcd)
 
 A simple library to simulate monochrome dot-matrix displays, such as monochrome LCD screens.
 
-<!-- [Documentation](https://docs.rs/simulate-lcd) -->
+## [Documentation](https://docs.rs/simulate-lcd/latest/simulate_lcd/)
 
 <!-- ## Overview -->
 
@@ -13,7 +13,8 @@ use std::{thread::sleep, time::Duration};
 
 use rand::{thread_rng, Rng};
 use sdl2::event::Event;
-use simulate_lcd::{Bitmap, LcdScreen, LCD_DARK_GREEN, LCD_LIGHT_GREEN};
+use simulate_lcd::{Bitmap, LcdScreen}
+use simulate_lcd::{LCD_DARK_GREEN, LCD_LIGHT_GREEN};
 
 const NANOS_PER_SEC: u64 = 1_000_000_000;
 
@@ -39,8 +40,11 @@ fn main() {
         }
 
         let mut rng = thread_rng();
-        let random_bits: Vec<[bool; 96]> = (0..64).map(|_| rng.gen()).collect();
-        screen.draw_bitmap(&random_bits.try_into().unwrap()).unwrap();
+        let random_bits: Vec<[bool; 96]> = (0..64)
+            .map(|_| rng.gen())
+            .collect();
+        screen.draw_bitmap(&random_bits.try_into().unwrap())
+            .unwrap();
 
         sleep(Duration::new(0, NANOS_PER_SEC / 60));
     }
@@ -51,7 +55,7 @@ More examples can be found in the examples folder.
 
 ## Usage
 
-`LcdScreen` is the main type provided by this crate. To create new simulated screen window with `R` rows and `C` columns of dots, use the function `LcdScreen::<R, C>::new`, with the following parameters:
+[`LcdScreen`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html) is the main type provided by this crate. To create new simulated screen window with `R` rows and `C` columns of dots, use the function [`LcdScreen::<R, C>::new`], with the following parameters:
 
 - `sdl_context`: an [`Sdl`](https://rust-sdl2.github.io/rust-sdl2/sdl2/struct.Sdl.html) context object 
 - `title`: the window title
@@ -60,11 +64,11 @@ More examples can be found in the examples folder.
 - `dot_width`: the width of a dot in pixels of the actual window
 - `dot_height`: the height of a dot in pixels of the actual window
 
-The screen will disappear as soon as the `LcdScreen` object is dropped, including at the end of the scope it was created. Use a loop, or some other device, to stop the screen object from being dropped. 
+The screen will disappear as soon as the [`LcdScreen`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html) object is dropped, including at the end of the scope it was created. Use a loop, or some other device, to stop the screen object from being dropped. 
 
-New images can be drawn to the screen using the `draw_bitmap` method. `draw_bitmap` takes any object which can be converted into a [`[[`](https://doc.rust-lang.org/std/primitive.array.html)[`bool;`](https://doc.rust-lang.org/std/primitive.bool.html)[` C]; R]`](https://doc.rust-lang.org/std/primitive.array.html) array. Each `true` in this row-major array represents a dot that is 'on'. simulate-lcd offers `Bitmap<C, R>` as a convenient alias for [`[[`](https://doc.rust-lang.org/std/primitive.array.html)[`bool;`](https://doc.rust-lang.org/std/primitive.bool.html)[` C]; R]`](https://doc.rust-lang.org/std/primitive.array.html).
+New images can be drawn to the screen using the [`draw_bitmap`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html#method.draw_bitmap) method. `draw_bitmap` takes any object which can be converted into a `[[`[`bool;`](https://doc.rust-lang.org/std/primitive.bool.html)[` C]; R]`](https://doc.rust-lang.org/std/primitive.array.html) array. Each `true` in this row-major array represents a dot that is 'on'. simulate-lcd offers `Bitmap<C, R>` as a convenient alias for `[[`[`bool;`](https://doc.rust-lang.org/std/primitive.bool.html)[` C]; R]`](https://doc.rust-lang.org/std/primitive.array.html)
 
-The 'on' and 'off' colors of the screen are [`sdl2::pixels::Color`](https://rust-sdl2.github.io/rust-sdl2/sdl2/pixels/struct.Color.html) objects. They can be created from RGB values with the [`sdl2::pixels::Color::RGB`](https://rust-sdl2.github.io/rust-sdl2/sdl2/pixels/struct.Color.html#method.RGB) function. simulate-lcd offers the `LCD_DARK_GREEN` and `LCD_LIGHT_GREEN` constants from simulating green backlight LCD screens.
+The 'on' and 'off' colors of the screen are [`sdl2::pixels::Color`](https://rust-sdl2.github.io/rust-sdl2/sdl2/pixels/struct.Color.html) objects. They can be created from RGB values with the [`sdl2::pixels::Color::RGB`](https://rust-sdl2.github.io/rust-sdl2/sdl2/pixels/struct.Color.html#method.RGB) function. simulate-lcd offers the [`LCD_DARK_GREEN`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html#method.draw_bitmap) and [`LCD_LIGHT_GREEN`](https://docs.rs/simulate-lcd/latest/simulate_lcd/constant.LCD_LIGHT_GREEN.html) constants from simulating green backlight LCD screens.
 
 ## Setup
 
@@ -73,7 +77,7 @@ simulate-lcd is built around the [sdl2](https://crates.io/crates/sdl2) crate. A 
 
 ## License
 
-Licensed under the Apache License, Version 2.0 (LICENSE or http://www.apache.org/licenses/LICENSE-2.0).
+Licensed under the Apache License, Version 2.0 (LICENSE or [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)).
 
 <!-- 
 

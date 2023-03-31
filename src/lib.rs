@@ -35,10 +35,10 @@ use sdl2::{
 
 // Constants
 
-/// A `sdl2::pixels::Color` object representing the 'on' color of green backlight LCD screens.
+/// A [`sdl2::pixels::Color`] object representing the 'on' color of green backlight LCD screens.
 pub const LCD_DARK_GREEN: Color = Color::RGB(69, 75, 59);
 
-/// A `sdl2::pixels::Color` object representing the 'off' color of green backlight LCD screens.
+/// A [`sdl2::pixels::Color`] object representing the 'off' color of green backlight LCD screens.
 pub const LCD_LIGHT_GREEN: Color = Color::RGB(158, 171, 136);
 
 // Error
@@ -234,7 +234,7 @@ impl<const R: usize, const C: usize> LcdScreen<R, C> {
     /// * `sdl_context` - An [`Sdl`] context object
     /// * `title` - The title of the window containing the screen
     /// * `on_color` - A [`Color`] object representing the color of a dot when it is 'on'
-    /// * `off_color - A [`Color`] object representing the color of a dot when it is 'off'
+    /// * `off_color` - A [`Color`] object representing the color of a dot when it is 'off'
     /// * `dot_width` - The width of a dot on the screen in pixels
     /// * `dot_height` - The height of a dot on the screen in pixels
     ///
