@@ -55,7 +55,7 @@ More examples can be found in the examples folder.
 
 ## Usage
 
-[`LcdScreen`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html) is the main type provided by this crate. To create new simulated screen window with `R` rows and `C` columns of dots, use the function [`LcdScreen::<R, C>::new`], with the following parameters:
+[`LcdScreen`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html) is the main type provided by this crate. To create new simulated screen window with `R` rows and `C` columns of dots, use the function [`LcdScreen::<R, C>::new`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html#method.new), with the following parameters:
 
 - `sdl_context`: an [`Sdl`](https://rust-sdl2.github.io/rust-sdl2/sdl2/struct.Sdl.html) context object 
 - `title`: the window title
@@ -66,13 +66,13 @@ More examples can be found in the examples folder.
 
 The screen will disappear as soon as the [`LcdScreen`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html) object is dropped, including at the end of the scope it was created. Use a loop, or some other device, to stop the screen object from being dropped. 
 
-New images can be drawn to the screen using the [`draw_bitmap`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html#method.draw_bitmap) method. `draw_bitmap` takes any object which can be converted into a `[[`[`bool;`](https://doc.rust-lang.org/std/primitive.bool.html)[` C]; R]`](https://doc.rust-lang.org/std/primitive.array.html) array. Each `true` in this row-major array represents a dot that is 'on'. simulate-lcd offers `Bitmap<C, R>` as a convenient alias for `[[`[`bool;`](https://doc.rust-lang.org/std/primitive.bool.html)[` C]; R]`](https://doc.rust-lang.org/std/primitive.array.html)
+New images can be drawn to the screen using the [`draw_bitmap`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html#method.draw_bitmap) method. [`draw_bitmap`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html#method.draw_bitmap) takes any object which can be converted into a `[[`[`bool`](https://doc.rust-lang.org/std/primitive.bool.html)`;`[`C`](https://doc.rust-lang.org/std/primitive.array.html)`];`[`R`](https://doc.rust-lang.org/std/primitive.array.html)`]` array. Each `true` in this row-major array represents a dot that is 'on'. simulate-lcd offers [`Bitmap<C, R>`](https://docs.rs/simulate-lcd/latest/simulate_lcd/type.Bitmap.html) as a convenient alias for `[[`[`bool`](https://doc.rust-lang.org/std/primitive.bool.html)`;`[`C`](https://doc.rust-lang.org/std/primitive.array.html)`];`[`R`](https://doc.rust-lang.org/std/primitive.array.html)`]`.
 
 The 'on' and 'off' colors of the screen are [`sdl2::pixels::Color`](https://rust-sdl2.github.io/rust-sdl2/sdl2/pixels/struct.Color.html) objects. They can be created from RGB values with the [`sdl2::pixels::Color::RGB`](https://rust-sdl2.github.io/rust-sdl2/sdl2/pixels/struct.Color.html#method.RGB) function. simulate-lcd offers the [`LCD_DARK_GREEN`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html#method.draw_bitmap) and [`LCD_LIGHT_GREEN`](https://docs.rs/simulate-lcd/latest/simulate_lcd/constant.LCD_LIGHT_GREEN.html) constants from simulating green backlight LCD screens.
 
 ## Setup
 
-simulate-lcd is built around the [sdl2](https://crates.io/crates/sdl2) crate. A new `LcdScreen` requires an [`Sdl`](https://rust-sdl2.github.io/rust-sdl2/sdl2/struct.Sdl.html) context object created by the [`sdl2::init()`](https://rust-sdl2.github.io/rust-sdl2/sdl2/fn.init.html) function. Note that sdl2 may require further setup than just adding the crate. See the [sdl2 README](https://github.com/Rust-SDL2/rust-sdl2/blob/master/README.md#requirements) for details.
+simulate-lcd is built around the [sdl2](https://crates.io/crates/sdl2) crate. A new [`LcdScreen`](https://docs.rs/simulate-lcd/latest/simulate_lcd/struct.LcdScreen.html) requires an [`Sdl`](https://rust-sdl2.github.io/rust-sdl2/sdl2/struct.Sdl.html) context object created by the [`sdl2::init()`](https://rust-sdl2.github.io/rust-sdl2/sdl2/fn.init.html) function. Note that sdl2 may require further setup than just adding the crate. See the [sdl2 README](https://github.com/Rust-SDL2/rust-sdl2/blob/master/README.md#requirements) for details.
 <!-- from the [sdl2](https://crates.io/crates/sdl2) crate.  -->
 
 ## License
