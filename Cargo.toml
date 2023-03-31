@@ -1,6 +1,6 @@
 [package]
 name = "simulate-lcd"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Simon Varey <simonvarey@gmail.com>"]
 description = "A simple library to simulate monochrome dot-matrix displays, such as monochrome LCD screens."
