@@ -298,7 +298,7 @@ impl<const R: usize, const C: usize> LcdScreen<R, C> {
 
         // Set up window
 
-        let video_subsystem = sdl_context.video().map_err(|err| LcdError::Video(err))?;
+        let video_subsystem = sdl_context.video().map_err(LcdError::Video)?;
 
         let window = video_subsystem
             .window(title, window_width, window_height)
@@ -373,9 +373,7 @@ impl<const R: usize, const C: usize> LcdScreen<R, C> {
                     } else {
                         self.off_color
                     });
-                    self.canvas
-                        .fill_rect(dot.rect)
-                        .map_err(|err| LcdError::Fill(err))?;
+                    self.canvas.fill_rect(dot.rect).map_err(LcdError::Fill)?;
                 }
             }
         }
